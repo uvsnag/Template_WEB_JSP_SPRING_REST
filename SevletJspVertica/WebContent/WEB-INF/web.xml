@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>DemoJspVertica</display-name>
+   <servlet>
+       <servlet-name>employeeServlet</servlet-name>
+       <servlet-class>sevlet.EmployeeServlet</servlet-class>
+   </servlet>
+   <servlet>
+       <servlet-name>employeeMultiServlet</servlet-name>
+       <servlet-class>sevlet.EmployeeMultiServlet</servlet-class>
+   </servlet>
+   <servlet>
+       <servlet-name>sqlAnalyticsServlet</servlet-name>
+       <servlet-class>sevlet.SQLAnalyticsServlet</servlet-class>
+   </servlet>
+   <servlet>
+       <servlet-name>functionServlet</servlet-name>
+       <servlet-class>sevlet.FunctionServlet</servlet-class>
+   </servlet>
+ 
+   <servlet-mapping>
+       <servlet-name>employeeServlet</servlet-name>
+       <url-pattern>/simple</url-pattern>
+   </servlet-mapping>
+   
+    <servlet-mapping>
+       <servlet-name>employeeMultiServlet</servlet-name>
+       <url-pattern>/multi</url-pattern>
+   </servlet-mapping>
+ 
+    <servlet-mapping>
+       <servlet-name>sqlAnalyticsServlet</servlet-name>
+       <url-pattern>/analytic</url-pattern>
+   </servlet-mapping>
+    <servlet-mapping>
+       <servlet-name>functionServlet</servlet-name>
+       <url-pattern>/function</url-pattern>
+   </servlet-mapping>
+ 
+  <welcome-file-list>
+    <welcome-file>EmployeeInfo.jsp</welcome-file>
+    <welcome-file>MultiInfo.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

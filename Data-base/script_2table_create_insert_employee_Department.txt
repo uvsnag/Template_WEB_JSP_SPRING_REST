@@ -1,0 +1,96 @@
+
+
+CREATE TABLE public.test_employee
+(
+    index int NOT NULL,
+    name varchar(100),
+    date_of_birth date,
+    address varchar(100),
+    id_dep int NOT NULL,
+    CONSTRAINT C_PRIMARY PRIMARY KEY (index) DISABLED
+);
+
+
+ALTER TABLE public.test_employee ADD CONSTRAINT C_FOREIGN FOREIGN KEY (id_dep) references store.test_department (index);
+
+CREATE PROJECTION public.test_employee_super /*+basename(test_employee),createtype(L)*/ 
+(
+ index,
+ name,
+ date_of_birth,
+ address,
+ id_dep
+)
+AS
+ SELECT test_employee.index,
+        test_employee.name,
+        test_employee.date_of_birth,
+        test_employee.address,
+        test_employee.id_dep
+ FROM public.test_employee
+ ORDER BY test_employee.name
+SEGMENTED BY hash(test_employee.name) ALL NODES OFFSET 0;
+
+
+SELECT MARK_DESIGN_KSAFE(0);
+
+
+==============================================
+
+
+
+CREATE TABLE store.test_department
+(
+    index int NOT NULL,
+    name varchar(100),
+    describe varchar(100),
+    CONSTRAINT C_PRIMARY PRIMARY KEY (index) DISABLED
+);
+
+
+CREATE PROJECTION store.test_department_super /*+basename(test_department),createtype(L)*/ 
+(
+ index,
+ name,
+ describe
+)
+AS
+ SELECT test_department.index,
+        test_department.name,
+        test_department.describe
+ FROM store.test_department
+ ORDER BY test_department.name
+SEGMENTED BY hash(test_department.name) ALL NODES OFFSET 0;
+
+
+SELECT MARK_DESIGN_KSAFE(0);
+
+
+=======================
+
+CREATE TABLE public.test_employee_flatten
+(
+    index int NOT NULL,
+    name varchar(100),
+    date_of_birth date,
+    address varchar(100),
+    id_dep int NOT NULL,
+    depname VARCHAR(100) 
+   DEFAULT( SELECT name FROM store.test_department d WHERE d.index=id_dep  ),
+   describe VARCHAR(100) DEFAULT( SELECT describe FROM store.test_department d WHERE d.index=id_dep ),
+    CONSTRAINT C_PRIMARY PRIMARY KEY (index) DISABLED
+);
+INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (1 , 'employee1 ', sysdate, 'address1 ', 1);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (2 , 'employee2 ', sysdate, 'address2 ', 2);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (3 , 'employee3 ', sysdate, 'address3 ', 2);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (4 , 'employee4 ', sysdate, 'address4 ', 3);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (5 , 'employee5 ', sysdate, 'address5 ', 1);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (6 , 'employee6 ', sysdate, 'address6 ', 4);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (7 , 'employee7 ', sysdate, 'address7 ', 1);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (8 , 'employee8 ', sysdate, 'address8 ', 4);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (9 , 'employee9 ', sysdate, 'address9 ', 4);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (10, 'employee10', sysdate, 'address10', 1);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (11, 'employee11', sysdate, 'address11', 5);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (12, 'employee12', sysdate, 'address12', 5);
+	INSERT INTO test_employee_flatten (index, name, date_of_birth, address, id_dep) VALUES  (13, 'employee13', sysdate, 'address13', 1);
+	
