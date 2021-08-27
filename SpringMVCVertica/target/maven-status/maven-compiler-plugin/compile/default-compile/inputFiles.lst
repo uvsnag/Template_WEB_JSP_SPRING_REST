@@ -1,7 +1,10 @@
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\config\WebMvcConfig.java
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\model\Employee.java
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\dao\EmployeeDAO.java
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\controller\MainController.java
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\mapper\EmployeeMapper.java
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\config\ApplicationContextConfig.java
-E:\vertica\source\SpringMVCVertica\src\main\java\vertica\config\SpringWebAppInitializer.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\mapper\EmployeeMapper.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\dao\EmployeeDAO.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\config\ApplicationContextConfig.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\controller\EmployeeController.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\common\ErrorMessage.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\config\SpringWebAppInitializer.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\form\PostEmpArgument.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\form\EmployeeReturnValue.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\model\Employee.java
+E:\vertica\source\Spring_Template\SpringMVCVertica\src\main\java\com\vertica\spring\config\WebMvcConfig.java
